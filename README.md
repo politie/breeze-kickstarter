@@ -1,9 +1,6 @@
 breeze-kickstarter
 ==================
 
-Get Started
-===========
-
 Storm topologies can be defined with Java.
 
 ```java
@@ -47,7 +44,7 @@ public class TopologyStarter {
 }
 ```
 
-Storm topologies can also be defined in xml.
+Storm topologies can also be defined in Spring XML.
 
 ```xml
 <?xml version="1.0" encoding="US-ASCII"?>
