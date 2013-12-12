@@ -13,6 +13,9 @@ import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * @author Jethro Bakker
+ */
 public class ChunkReaderSpout implements IRichSpout {
 
 	private SpoutOutputCollector collector;

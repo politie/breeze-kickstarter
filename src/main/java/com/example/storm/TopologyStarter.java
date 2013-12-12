@@ -9,6 +9,9 @@ import backtype.storm.utils.Utils;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Jethro Bakker
+ */
 public class TopologyStarter {
 
 	public static void main(String[] args) throws Exception {

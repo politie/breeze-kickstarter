@@ -11,6 +11,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
+/**
+ * @author Jethro Bakker
+ */
 public class AnalyticsRepoBolt implements IRichBolt {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringBolt.class);

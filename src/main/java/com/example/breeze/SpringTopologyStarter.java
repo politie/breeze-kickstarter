@@ -9,6 +9,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Jethro Bakker
+ */
 public class SpringTopologyStarter {
 
 	public static void main(String[] args) throws Exception {

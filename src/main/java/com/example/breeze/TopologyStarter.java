@@ -11,6 +11,9 @@ import eu.icolumbo.breeze.SpringSpout;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Jethro Bakker
+ */
 public class TopologyStarter {
 
 	public static void main(String[] args) throws Exception {

@@ -7,6 +7,9 @@ import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * @author Jethro Bakker
+ */
 public class ChunkReader implements InitializingBean {
 
 	private Resource feed;

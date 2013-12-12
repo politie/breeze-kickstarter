@@ -10,6 +10,9 @@ import backtype.storm.tuple.Tuple;
 import java.util.Arrays;
 import java.util.Map;
 
+/**
+ * @author Jethro Bakker
+ */
 public class AnalyserBolt implements IRichBolt {
 
 	private OutputCollector collector;
