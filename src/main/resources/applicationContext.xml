@@ -5,6 +5,8 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.icolumbo.eu/2013/breeze http://www.icolumbo.eu/2013/breeze.xsd">
 
+	<description>Breeze namespace configuration alternative.</description>
+
 	<breeze:topology id="demo">
 		<breeze:spout beanType="com.example.breeze.ChunkReader" signature="next()" outputFields="document"/>
 		<breeze:bolt beanType="com.example.breeze.AnalyticsRepo" signature="register(document,analyzed)"/>

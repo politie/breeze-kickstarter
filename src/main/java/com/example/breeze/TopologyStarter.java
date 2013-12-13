@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Progmatic configuration alternative.
  * @author Jethro Bakker
  */
 public class TopologyStarter {
