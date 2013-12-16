@@ -98,5 +98,4 @@ Note that the Analyser bean will be instantiated for each call/tuple due to the 
 $ /opt/storm/bin/storm jar ./demo-dist.jar com.example.TopologyStarter /var/spool/feed/batch1
 ```
 
-See the [com.example.storm](http://github.com/internet-research-network/breeze-kickstarter/tree/master/src/main/java
-/com/example/storm) package for the Storm spout and bolt classes that don't use Spring and Breeze.
+See the [com.example.storm](http://github.com/internet-research-network/breeze-kickstarter/tree/master/src/main/java/com/example/storm) package for the Storm spout and bolt classes that don't use Spring and Breeze.
