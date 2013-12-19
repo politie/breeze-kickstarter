@@ -25,7 +25,7 @@ public class ChunkReader implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		Scanner scanner = new Scanner(feed.getFile());
+		Scanner scanner = new Scanner(feed.getInputStream());
 
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
