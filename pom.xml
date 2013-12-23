@@ -124,10 +124,6 @@
 			<id>clojars</id>
 			<url>http://clojars.org/repo</url>
 		</repository>
-		<repository>
-			<id>irn</id>
-			<url>https://raw.github.com/internet-research-network/repository/master</url>
-		</repository>
 	</repositories>
 
 </project>
