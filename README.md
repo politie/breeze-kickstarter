@@ -101,4 +101,12 @@ To run the demo topology on Storm build a jar with `mvn package` and execute the
 storm jar breeze-kickstarter-1.0-SNAPSHOT.jar com.example.breeze.TopologyStarter
 ```
 
+This will use the Spring Config defined in com.example.breeze.TopologyStarter.
+
+Alternatively you can use the configuration defined in applicationContext.xml using the ToplogyStarter bundled with Breeze:
+
+```shell
+storm jar breeze-kickstarter-1.0-SNAPSHOT.jar eu.icolumbo.breeze.namespace.TopologyStarter demo
+```
+
 See the [com.example.storm](http://github.com/internet-research-network/breeze-kickstarter/tree/master/src/main/java/com/example/storm) package for the Storm spout and bolt classes that don't use Spring and Breeze.
