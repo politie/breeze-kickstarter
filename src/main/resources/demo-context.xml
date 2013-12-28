@@ -9,14 +9,16 @@
             http://www.springframework.org/schema/context/spring-context.xsd
         ">
 
-	<context:property-placeholder/>
+	<context:property-placeholder location="classpath:/demo.properties"/>
 
-	<bean class="com.example.breeze.ChunkReader">
-		<property name="feed" value="classpath:demo.txt"/>
+	<bean id="feed" class="java.util.Random"/>
+
+	<bean id="plainOutput" class="com.example.Greeter">
+		<property name="greeting" value="${greeting}"/>
 	</bean>
 
-	<bean class="com.example.breeze.Analyser" scope="prototype"/>
+	<bean id="beanOutput" class="com.example.Marker" scope="prototype"/>
 
-	<bean class="com.example.breeze.AnalyticsRepo"/>
+	<bean class="com.example.Register"/>
 
 </beans>

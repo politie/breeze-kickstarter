@@ -7,7 +7,6 @@ import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import com.example.Greeter;
-
 import java.util.Arrays;
 import java.util.Map;
 
@@ -27,9 +26,9 @@ public class GreeterBolt implements IRichBolt {
 
 	@Override
 	public void execute(Tuple tuple) {
-		Long value = (Long) tuple.getValueByField("number");
-		String msg = greeter.greet(value);
-		collector.emit(tuple, Arrays.<Object>asList(value, msg));
+		Long number = tuple.getLongByField("number");
+		String heading = greeter.greet(number);
+		collector.emit(tuple, Arrays.<Object>asList(number, heading));
 		collector.ack(tuple);
 	}
 
@@ -46,4 +45,5 @@ public class GreeterBolt implements IRichBolt {
 	public Map<String, Object> getComponentConfiguration() {
 		return null;
 	}
+
 }

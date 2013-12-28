@@ -5,20 +5,16 @@ import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.IRichSpout;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.tuple.Fields;
-
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Random;
-import java.util.Scanner;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 
 public class FeedSpout implements IRichSpout {
 
-	private Random feed = new Random();
+	private Random feed;
 	private SpoutOutputCollector collector;
+
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer outputFieldsDeclarer) {
@@ -27,7 +23,8 @@ public class FeedSpout implements IRichSpout {
 
 	@Override
 	public void open(Map map, TopologyContext topologyContext, SpoutOutputCollector spoutOutputCollector) {
-		this.collector = spoutOutputCollector;
+		collector = spoutOutputCollector;
+		feed = new Random();
 	}
 
 	@Override

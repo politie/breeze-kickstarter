@@ -1,15 +1,16 @@
 package com.example;
 
+import eu.icolumbo.breeze.SpringBolt;
+import eu.icolumbo.breeze.SpringSpout;
 import backtype.storm.ILocalCluster;
 import backtype.storm.LocalCluster;
 import backtype.storm.generated.StormTopology;
 import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.utils.Utils;
-import eu.icolumbo.breeze.SpringBolt;
-import eu.icolumbo.breeze.SpringSpout;
-
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
 
 /**
  * Progmatic configuration alternative.
@@ -20,16 +21,20 @@ public class TopologyStarter {
 	public static void main(String[] args) throws Exception {
 		TopologyBuilder builder = new TopologyBuilder();
 
-		SpringSpout spout = new SpringSpout(ChunkReader.class, "next()", "document");
-		spout.setScatterOutput(true);
-		builder.setSpout("chunk-reader", spout);
+		SpringSpout feed = new SpringSpout(Random.class, "nextLong()", "number");
+		feed.setScatterOutput(true);
+		builder.setSpout("feed", feed);
 
-		SpringBolt bolt1 = new SpringBolt(Analyser.class, "analyze(document)", "analysis");
-		bolt1.setPassThroughFields("document");
-		builder.setBolt("analyser", bolt1).noneGrouping("chunk-reader");
+		SpringBolt greet = new SpringBolt(Greeter.class, "greet(number)", "heading");
+		greet.setPassThroughFields("number");
+		builder.setBolt("greet", greet).noneGrouping("feed");
 
-		SpringBolt bolt2 = new SpringBolt(AnalyticsRepo.class, "register(document, analysis)");
-		builder.setBolt("analytics-repo", bolt2).noneGrouping("analyser");
+		SpringBolt mark = new SpringBolt(Greeter.class, "mark(number)", "source", "isEven");
+		greet.setPassThroughFields("heading");
+		builder.setBolt("mark", mark).noneGrouping("greet");
+
+		SpringBolt register = new SpringBolt(Marker.class, "write(heading, isEven, source)");
+		builder.setBolt("register", register).noneGrouping("mark");
 
 		StormTopology topology = builder.createTopology();
 

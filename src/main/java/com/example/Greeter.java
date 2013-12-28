@@ -7,7 +7,9 @@ public class Greeter {
 
 
 	public String greet(Object o) {
-		return greeting + " " + String.valueOf(o);
+		StringBuilder buffer = new StringBuilder(greeting);
+		buffer.append(' ').append(o).append('!');
+		return buffer.toString();
 	}
 
 	public void setGreeting(String value) {

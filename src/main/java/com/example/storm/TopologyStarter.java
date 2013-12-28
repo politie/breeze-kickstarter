@@ -6,29 +6,26 @@ import backtype.storm.generated.StormTopology;
 import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.utils.Utils;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Properties;
 
-/**
- * @author Jethro Bakker
- */
+
 public class TopologyStarter {
 
 	public static void main(String[] args) throws Exception {
 		TopologyBuilder builder = new TopologyBuilder();
-		builder.setSpout("aspout", new ChunkReaderSpout());
-		builder.setBolt("abolt", new AnalyserBolt()).noneGrouping("aspout");
-		builder.setBolt("bbolt", new AnalyticsRepoBolt()).noneGrouping("abolt");
-
+		builder.setSpout("feed", new FeedSpout());
+		builder.setBolt("greet", new GreeterBolt()).noneGrouping("feed");
+		builder.setBolt("mark", new MarkerBolt()).noneGrouping("greet");
+		builder.setBolt("register", new RegisterBolt()).noneGrouping("mark");
 		StormTopology topology = builder.createTopology();
 
-		Map<String, Object> config = new HashMap<>();
-		config.put("file", "demo.txt");
+		Properties stormConf = new Properties();
+		stormConf.put("greeting", "Hello");
 
 		ILocalCluster cluster = new LocalCluster();
-		cluster.submitTopology("demo", config, topology);
+		cluster.submitTopology("demo", stormConf, topology);
 		Utils.sleep(10 * 1000);
 		cluster.shutdown();
-
 	}
+
 }
