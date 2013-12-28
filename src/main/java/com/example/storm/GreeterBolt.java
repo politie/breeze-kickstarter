@@ -6,26 +6,30 @@ import backtype.storm.topology.IRichBolt;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
+import com.example.Greeter;
 
 import java.util.Arrays;
 import java.util.Map;
 
-/**
- * @author Jethro Bakker
- */
-public class AnalyserBolt implements IRichBolt {
 
+public class GreeterBolt implements IRichBolt {
+
+	private Greeter greeter;
 	private OutputCollector collector;
 
+
 	@Override
-	public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
-		this.collector = outputCollector;
+	public void prepare(Map stormConf, TopologyContext topologyContext, OutputCollector outputCollector) {
+		collector = outputCollector;
+		greeter = new Greeter();
+		greeter.setGreeting((String) stormConf.get("greeting"));
 	}
 
 	@Override
 	public void execute(Tuple tuple) {
-		String value = (String) tuple.getValueByField("document");
-		collector.emit(tuple, Arrays.<Object>asList(value, value + ":" + Math.random()));
+		Long value = (Long) tuple.getValueByField("number");
+		String msg = greeter.greet(value);
+		collector.emit(tuple, Arrays.<Object>asList(value, msg));
 		collector.ack(tuple);
 	}
 
@@ -35,7 +39,7 @@ public class AnalyserBolt implements IRichBolt {
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer outputFieldsDeclarer) {
-		outputFieldsDeclarer.declare(new Fields("document", "analyzed"));
+		outputFieldsDeclarer.declare(new Fields("number", "heading"));
 	}
 
 	@Override

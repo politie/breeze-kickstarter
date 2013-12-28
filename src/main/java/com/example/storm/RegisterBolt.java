@@ -8,13 +8,10 @@ import backtype.storm.tuple.Tuple;
 import eu.icolumbo.breeze.SpringBolt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.Map;
 
-/**
- * @author Jethro Bakker
- */
-public class AnalyticsRepoBolt implements IRichBolt {
+
+public class RegisterBolt implements IRichBolt {
 
 	private static final Logger logger = LoggerFactory.getLogger(SpringBolt.class);
 

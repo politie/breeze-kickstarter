@@ -1,4 +1,4 @@
-package com.example.breeze;
+package com.example;
 
 import backtype.storm.ILocalCluster;
 import backtype.storm.LocalCluster;
