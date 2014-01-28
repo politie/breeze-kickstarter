@@ -29,11 +29,11 @@ public class TopologyStarter {
 		greet.setPassThroughFields("number");
 		builder.setBolt("greet", greet).noneGrouping("feed");
 
-		SpringBolt mark = new SpringBolt(Greeter.class, "mark(number)", "source", "isEven");
-		greet.setPassThroughFields("heading");
+		SpringBolt mark = new SpringBolt(Marker.class, "mark(number)", "source", "isEven");
+		mark.setPassThroughFields("heading");
 		builder.setBolt("mark", mark).noneGrouping("greet");
 
-		SpringBolt register = new SpringBolt(Marker.class, "write(heading, isEven, source)");
+		SpringBolt register = new SpringBolt(Register.class, "write(heading, isEven, source)");
 		builder.setBolt("register", register).noneGrouping("mark");
 
 		StormTopology topology = builder.createTopology();
