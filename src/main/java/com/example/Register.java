@@ -9,9 +9,9 @@ public class Register {
 	private static final Logger logger = LoggerFactory.getLogger(Register.class);
 
 
-	public void write(String header, boolean isEven, String judge){
+	public void write(String header, boolean isOdd, String judge){
 		StringBuilder buffer = new StringBuilder(header);
-		buffer.append(" You are ").append(isEven ? "even." : "odd.");
+		buffer.append(" You are ").append(isOdd ? "odd." : "even.");
 		buffer.append(" Cheers from ").append(judge);
 		logger.info(buffer.toString());
 	}

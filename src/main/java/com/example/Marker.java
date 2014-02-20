@@ -5,15 +5,15 @@ public class Marker {
 
 	public static class Attributes {
 
-		private String source;
+		private Marker source;
 		private boolean isEven;
 
 
-		public String getSource() {
+		public Marker getSource() {
 			return source;
 		}
 
-		public void setSource(String value) {
+		public void setSource(Marker value) {
 			source = value;
 		}
 
@@ -28,7 +28,7 @@ public class Marker {
 
 	public Attributes mark(long x) {
 		Attributes attributes = new Attributes();
-		attributes.setSource(toString());
+		attributes.setSource(this);
 		attributes.setIsEven(x % 2 == 0);
 		return attributes;
 	}

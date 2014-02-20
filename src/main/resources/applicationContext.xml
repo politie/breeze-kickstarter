@@ -10,10 +10,15 @@
 	<description>Breeze namespace configuration alternative.</description>
 
 	<breeze:topology id="demo">
-		<breeze:spout id="feed" beanType="java.util.Random" signature="nextLong()" outputFields="number"/>
+		<breeze:spout id="feed" beanType="java.util.Random" signature="nextLong()" outputFields="number">
+			<breeze:transaction ack="setSeed(number)"/>
+		</breeze:spout>
 		<breeze:bolt id="greet" beanType="com.example.Greeter" signature="greet(number)" outputFields="heading"/>
-		<breeze:bolt id="mark" beanType="com.example.Marker" signature="mark(number)" outputFields="source isEven"/>
-		<breeze:bolt id="register" beanType="com.example.Register" signature="write(heading, isEven, source)"/>
+		<breeze:bolt id="mark" beanType="com.example.Marker" signature="mark(number)" outputFields="judge isOdd">
+			<breeze:field name="judge" expression="Source.toString()"/>
+			<breeze:field name="isOdd" expression="! IsEven"/>
+		</breeze:bolt>
+		<breeze:bolt id="register" beanType="com.example.Register" signature="write(heading, isOdd, judge)"/>
 	</breeze:topology>
 
 </beans>
