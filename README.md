@@ -7,7 +7,7 @@ The Maven Exec plugin runs the demo in local mode.
 $ mvn package exec:java
 ```
 
-The storm command deploys the demo on a cluster.
+The storm command deploys the [demo context](https://github.com/internet-research-network/breeze-kickstarter/blob/master/src/main/resources/applicationContext.xml) on a cluster.
 
 ```shell
 $ storm jar breeze-kickstarter-1.0-SNAPSHOT.jar eu.icolumbo.breeze.namespace.TopologyStarter demo
